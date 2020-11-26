@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { HttpClient, HttpParams } from "@angular/common/http";
 
@@ -6,10 +6,12 @@ import { NgNavigatorShareService } from 'ng-navigator-share';
 
 // Services
 import { NavigationService } from "../services/navigation.service";
-import { ApiCallService } from "../services/api-call.service";
 
 // Interfaces
 import { SearchResult } from "../interfaces/searches";
+
+// Misc
+import { AnimationOptions } from "ngx-lottie";
 
 
 @Component({
@@ -19,12 +21,18 @@ import { SearchResult } from "../interfaces/searches";
 })
 export class ResultsComponent implements OnInit {
 
+  options: AnimationOptions = {
+    path: '/assets/MenheraChan.json'
+  }
+
+  loading:boolean = false;
+
   medium = '';
   q = '';
   searchResults: SearchResult[] = [];
   canShare = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private nav: NavigationService, private api: ApiCallService, private http: HttpClient, private webShare: NgNavigatorShareService) { }
+  constructor(private activatedRoute: ActivatedRoute, private nav: NavigationService, private http: HttpClient, private webShare: NgNavigatorShareService, private ngZone: NgZone) { }
 
   ngOnInit() {
     this.canShare = this.webShare.canShare();
@@ -56,8 +64,8 @@ export class ResultsComponent implements OnInit {
     // console.log(this.searchResults)
   }
 
-  goToSearch() {
-    this.nav.goToSearch();
+  goToList() {
+    this.nav.goToList();
   }
 
   shareThis(index: number) {
@@ -68,5 +76,11 @@ export class ResultsComponent implements OnInit {
       url: r.image
     })
       .catch(e => console.error('WebShare: ', e))
+  }
+
+  onLoopComplete() {
+    this.ngZone.run(() => {
+      this.loading = true
+    });
   }
 }

@@ -13,8 +13,8 @@ export class AppComponent {
 
   constructor(private nav: NavigationService) {}
 
-  goToHome() {
-    this.nav.goToHome()
+  goToList() {
+    this.nav.goToList()
   }
 
 }
