@@ -1,0 +1,14 @@
+<div class="row mt-3">
+  <div class="col d-flex justify-content-between align-items-center">
+    <h1>Saved Searches</h1>
+    <button (click)="goToSearch()" class="btn btn-warning">Search</button>
+  </div>
+</div>
+
+<ul class="list-group">
+  <div *ngFor="let items of searchItems">
+    <a [routerLink]="['/search', items.medium, items.q ]">
+      <li class="list-group-item">{{items.q}}</li>
+    </a>
+  </div>
+</ul>
