@@ -23,7 +23,7 @@ export class SearchListComponent implements OnInit {
       .then(result => {
         this.searchItems = result.map(s => {
           // @ts-ignore
-          s.medium = s.medium == 0 ? 'Anime' : 'Manga'
+          s.medium = s.medium == 0 ? 'anime' : 'manga'
           console.log(s)
           return s
         })
