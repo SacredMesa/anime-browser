@@ -34,4 +34,9 @@ export class SearchListComponent implements OnInit {
     this.nav.goToSearch();
   }
 
+delete(i: number) {
+  console.log(i)
+  return this.searchService.deleteSearch(i)
+}
+
 }

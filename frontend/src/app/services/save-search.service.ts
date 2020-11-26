@@ -24,7 +24,6 @@ export class SaveSearchService extends Dexie {
 
   async saveSearch(s: Searches): Promise<any> {
     s.q = normaliseSearchText(s.q);
-    // Select count(*) from from searches where q = 'sqb' and genre = 'anime'
     const resultCount = await this.searches
       .where('q').equals(s.q)
       .and(doc => doc.medium == s.medium)
@@ -37,6 +36,10 @@ export class SaveSearchService extends Dexie {
 
   async getSearch(): Promise<Searches[]> {
     return await this.searches.orderBy('q').toArray()
+  }
+
+  deleteSearch(i: number) {
+    this.searches.delete(i)
   }
 
 }

@@ -60,8 +60,8 @@ export class ResultsComponent implements OnInit {
     this.nav.goToSearch();
   }
 
-  shareThis(idx: number) {
-    const r = this.searchResults[idx]
+  shareThis(index: number) {
+    const r = this.searchResults[index]
     this.webShare.share({
       title: r.title,
       text: r.synopsis,
