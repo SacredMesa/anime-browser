@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 // Components
 import { AppComponent } from './app.component';
@@ -49,6 +50,7 @@ const ROUTES: Routes = [
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     LottieModule.forRoot({
       player: playerFactory
     })

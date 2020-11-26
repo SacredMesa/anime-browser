@@ -1,6 +1,35 @@
 <div class="row">
   <div class="col">
-    <h4> <code>{{q}}</code> {{medium}} </h4>
+    <h2>{{medium}} / <code>{{q}}</code></h2>
   </div>
 </div>
+
+<div class="d-flex flex-wrap justify-content-center">
+  <div class="card" style="width: 18rem;" *ngFor="let sr of searchResults; let i = idx">
+    <img class="card-img-top" src="{{sr.image}}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{sr.title}}</h5>
+      <p class="card-text">{{sr.synopsis}}</p>
+      <a href="{{sr.url}}">More info..</a>
+      <button type="button" class="btn btn-outline-warning" *ngIf="canShare" (click)="shareThis(i)">Share</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="row" *ngFor="let sr of searchResults; let i = idx">
+  <div class="col">
+    <img src="{{sr.image}}" alt="cover picture">
+    <h3 class="title">
+      {{sr.title}}
+    </h3>
+    <p>
+      {{sr.synopsis}}
+    </p>
+  </div>
+  <button type="button" class="btn btn-outline-warning" *ngIf="canShare" (click)="shareThis(i)">Share</button>
+</div> -->
+
+
+
 <button (click)="goToSearch()" class="btn btn-warning">Search More</button>
